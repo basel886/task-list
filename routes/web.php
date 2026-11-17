@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\UserController;
 
 Route::get('/about', function () {
     $name = "Basel Salem";
@@ -59,3 +60,10 @@ Route::post('/about', function (Request $request) {
     ];
     return view('about', compact('name', 'departments'));
 });
+
+// راوتات جدول المستخدمين باستخدام UserController
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/users/delete/{id}', [UserController::class, 'destroy']);
+Route::post('/users/edit/{id}', [UserController::class, 'edit']);
+Route::post('/users/update', [UserController::class, 'update']);
